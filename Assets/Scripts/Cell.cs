@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
-    [SerializeField] private Color _standartColor;
-    [SerializeField] private Color _hoverColor;
-    [SerializeField] private MeshRenderer _meshRenderer;
-
-    private void OnMouseEnter()
+    // Start is called before the first frame update
+    void Start()
     {
-        ChangeColor(_hoverColor);
+        
     }
 
-    private void OnMouseExit()
+    // Update is called once per frame
+    void Update()
     {
-        ChangeColor(_standartColor);
-    }
-
-    private void ChangeColor(Color color)
-    {
-        _meshRenderer.material.color = color;
+        
     }
 }
