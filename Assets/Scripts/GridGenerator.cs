@@ -42,15 +42,20 @@ public class GridGenerator : MonoBehaviour
             if (x >= difference && x < _gridSize.y)
             {
                 float coordinate_z = strNumber_z;
-                
+
+                int coordinateCounterZ = 0;
+
                 for (float z = hexInLine; z >= 0; z--)
                 {
-                    
+
+
                     var position = new Vector3(coordinate_x * (cellsize.x + _offset), 0, coordinate_z * (cellsize.z + _offset));
 
                     var cell = Instantiate(_prefab, position, Quaternion.Euler(-90, 0, 0), _parent);
 
-                    cell.name = $"X: {x} Z: {z}";
+                    cell.name = $"X: {x} Z: {coordinateCounterZ}";
+
+                    coordinateCounterZ++;
 
                     coordinate_z -= 0.90f;
                 }
