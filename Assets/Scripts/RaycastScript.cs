@@ -12,7 +12,7 @@ public class RaycastScript : MonoBehaviour
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(transform.position, transform.forward*100f, Color.yellow);
+        Debug.DrawRay(transform.position, transform.forward * 100f, Color.yellow);
 
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -22,11 +22,12 @@ public class RaycastScript : MonoBehaviour
             {
                 if (CurrentSelectable && CurrentSelectable != selectable)
                 {
-                    CurrentSelectable.Deselect();     
+                    CurrentSelectable.Deselect();
                 }
                 CurrentSelectable = selectable;
                 hit.collider.gameObject.GetComponent<Selectable>().Select();
-            } else
+            }
+            else
             {
                 if (CurrentSelectable)
                 {
@@ -35,7 +36,8 @@ public class RaycastScript : MonoBehaviour
                 }
             }
             //Debug.Log("Вы попали в гекс с координатами: " + hit.transform.position);
-        } else
+        }
+        else
         {
             if (CurrentSelectable)
             {

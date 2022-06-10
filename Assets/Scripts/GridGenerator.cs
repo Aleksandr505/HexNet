@@ -4,6 +4,8 @@ public class GridGenerator : MonoBehaviour
 {
     [SerializeField] private Vector2Int _gridSize;
     [SerializeField] private Cell _prefab;
+    [SerializeField] private CellForBase _cellForBase;
+    [SerializeField] private CellForPoints _cellForPoints;
     [SerializeField] private float _offset;
     [SerializeField] private Transform _parent;
 
@@ -27,11 +29,34 @@ public class GridGenerator : MonoBehaviour
                 for (float z = 0; z < hexInLine; z++)
                 {
                     var position = new Vector3(coordinate_x * (cellsize.x + _offset), 0, coordinate_z * (cellsize.z + _offset));
-
-                    var cell = Instantiate(_prefab, position, Quaternion.Euler(-90, 0, 0), _parent);
-
-                    cell.name = $"X: {x} Z: {z}";
-
+                    // if для клеток базы не гибкие работают под стандартное поле
+                    //базы
+                    if (x == 0 && z == 0)
+                    {
+                        var _base = Instantiate(_cellForBase, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Base: 1";
+                    }
+                    else if (x == 0 && z == 4)
+                    {
+                        var _base = Instantiate(_cellForBase, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Base: 2";
+                    }
+                    //клетки для очков
+                    else if (x == 2 && z == 2)
+                    {
+                        var _base = Instantiate(_cellForPoints, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Points Cell: 1";
+                    }
+                    else if (x == 2 && z == 4)
+                    {
+                        var _base = Instantiate(_cellForPoints, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Points Cell: 2";
+                    }
+                    else
+                    {
+                        var cell = Instantiate(_prefab, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        cell.name = $"Cell X: {x} Z: {z}";
+                    }
                     coordinate_z -= 0.90f;
                 }
                 strNumber_z += 0.46f;
@@ -47,17 +72,61 @@ public class GridGenerator : MonoBehaviour
 
                 for (float z = hexInLine; z >= 0; z--)
                 {
-
-
                     var position = new Vector3(coordinate_x * (cellsize.x + _offset), 0, coordinate_z * (cellsize.z + _offset));
 
-                    var cell = Instantiate(_prefab, position, Quaternion.Euler(-90, 0, 0), _parent);
 
-                    cell.name = $"X: {x} Z: {coordinateCounterZ}";
+                    //базы
+                    if (x == 4 && z == 0)
+                    {
+                        var _base = Instantiate(_cellForBase, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Base: 3";
+                    }
+                    else if (x == 4 && z == 8)
+                    {
+                        var _base = Instantiate(_cellForBase, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Base: 4";
+                    }
+                    else if (x == 8 && z == 0)
+                    {
+                        var _base = Instantiate(_cellForBase, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Base: 6";
+                    }
+                    else if (x == 8 && z == 4)
+                    {
+                        var _base = Instantiate(_cellForBase, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Base: 5";
+                    }
+                    //клетки для очков
+                    else if (x == 4 && z == 2)
+                    {
+                        var _base = Instantiate(_cellForPoints, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Points Cell: 3";
+                    }
+                    else if (x == 4 && z == 6)
+                    {
+                        var _base = Instantiate(_cellForPoints, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Points Cell: 4";
+                    }
+                    else if (x == 6 && z == 2)
+                    {
+                        var _base = Instantiate(_cellForPoints, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Points Cell: 5";
+                    }
+                    else if (x == 6 && z == 4)
+                    {
+                        var _base = Instantiate(_cellForPoints, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        _base.name = $"Points Cell: 6";
+                    }
 
+                    else
+                    {
+                        var cell = Instantiate(_prefab, position, Quaternion.Euler(-90, 0, 0), _parent);
+                        cell.name = $"Cell X: {x} Z: {coordinateCounterZ}";
+                    }
                     coordinateCounterZ++;
 
                     coordinate_z -= 0.90f;
+
                 }
                 hexInLine--;
                 strNumber_z -= 0.46f;
