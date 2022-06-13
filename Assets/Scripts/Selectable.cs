@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Selectable : MonoBehaviour
 {
+
+    public Material baseMaterial;
+    public Material selectableMaterial;
+
     public void Select()
     {
-        GetComponent<Renderer>().material.color = Color.yellow;
+        GetComponent<Renderer>().material = selectableMaterial;
     }
 
     public void Deselect()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        GetComponent<Renderer>().material = baseMaterial;
     }
 }

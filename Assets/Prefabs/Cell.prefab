@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5373e3ace3b67a04aa70e0cd13029f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseMaterial: {fileID: 2100000, guid: d6e620406fbb90e428526991aa53def6, type: 2}
+  selectableMaterial: {fileID: 2100000, guid: d72c3109aefec1545bb9fa8598097804, type: 2}
 --- !u!64 &1471745805527557500
 MeshCollider:
   m_ObjectHideFlags: 0
