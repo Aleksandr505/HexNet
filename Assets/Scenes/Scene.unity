@@ -5789,6 +5789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentSelectable: {fileID: 0}
+  hexBase: {fileID: 5938440347641730847, guid: 2bf868bb6a2a50d47908da990caea05b, type: 3}
 --- !u!1 &1541844170
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class RaycastScript : MonoBehaviour
 
     public Selectable CurrentSelectable;
 
+    [SerializeField] private HexBase hexBase;
+
 
     // Update is called once per frame
     void Update()
@@ -26,6 +28,12 @@ public class RaycastScript : MonoBehaviour
                 }
                 CurrentSelectable = selectable;
                 hit.collider.gameObject.GetComponent<Selectable>().Select();
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Debug.Log("Вы попали в гекс с именем: " + CurrentSelectable.name);
+                    createBase(hit);
+                }
             }
             else
             {
@@ -35,6 +43,8 @@ public class RaycastScript : MonoBehaviour
                     CurrentSelectable = null;
                 }
             }
+
+
             //Debug.Log("Вы попали в гекс с координатами: " + hit.transform.position);
         }
         else
@@ -45,6 +55,16 @@ public class RaycastScript : MonoBehaviour
                 CurrentSelectable = null;
             }
         }
+       
+    }
 
+    void createBase(RaycastHit hit)
+    {
+        GameObject gameObject = hit.collider.gameObject;
+        if (gameObject.GetComponent<CellForBase>())
+        {
+            var _hexBase = Instantiate(hexBase, gameObject.transform.position, Quaternion.Euler(-90, 0, 0), gameObject.transform.parent);
+            _hexBase.name = "Character hex base";
+        }
     }
 }
