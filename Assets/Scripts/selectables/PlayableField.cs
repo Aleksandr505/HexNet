@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellForBase : MonoBehaviour
+public class PlayableField : MonoBehaviour
 {
-    public HexBase hexBase;
+    public Piece gamePiece;
     // Start is called before the first frame update
     void Start()
     {

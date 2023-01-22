@@ -6,9 +6,8 @@ public class RaycastScript : MonoBehaviour
 {
 
     public Selectable CurrentSelectable;
-
-    [SerializeField] private HexBase hexBase;
-    [SerializeField] private GamePiece gamePiece;
+    
+    [SerializeField] private Piece gamePiece;
 
 
     // Update is called once per frame
@@ -32,9 +31,13 @@ public class RaycastScript : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log("Вы попали в гекс с именем: " + CurrentSelectable.name);
-                    createBase(hit);
-                    createGamePiece(hit);
+
+                    //Debug.Log("Вы попали в гекс с именем: " + CurrentSelectable.name);
+                    if (GameManager.instance.checkCell(hit))
+                    {
+                        GameManager.instance.createGamePiece(hit, gamePiece);
+                    }      
+                    
                 }
             }
             else
@@ -58,29 +61,9 @@ public class RaycastScript : MonoBehaviour
             }
         }
        
-    }
+    }    
 
-    void createBase(RaycastHit hit)
-    {
-        GameObject gameObject = hit.collider.gameObject;
-        CellForBase cellForBase = gameObject.GetComponent<CellForBase>();
-        if (cellForBase && cellForBase.hexBase == null)
-        {
-            var _hexBase = Instantiate(hexBase, gameObject.transform.position, Quaternion.Euler(-90, 0, 0), gameObject.transform.parent);
-            _hexBase.name = "Character hex base for " + cellForBase.name;
-            cellForBase.hexBase = _hexBase;
-        }
-    }
+    
 
-    void createGamePiece(RaycastHit hit)
-    {
-        GameObject gameObject = hit.collider.gameObject;
-        PlayableField playableField = gameObject.GetComponent<PlayableField>();
-        if (playableField && playableField.gamePiece == null)
-        {
-            var _gamePiece = Instantiate(gamePiece, gameObject.transform.position, Quaternion.Euler(-90, 0, 0), gameObject.transform.parent);
-            _gamePiece.name = "Game piece for " + playableField.name;
-            playableField.gamePiece = _gamePiece;
-        }
-    }
+    
 }
